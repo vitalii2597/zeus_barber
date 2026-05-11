@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+/* ── Brand color tokens ── */
+@theme {
+  --color-bg: #0a0c16;
+  --color-gold: #C9A84C;
+  --color-gold-light: #E8C97A;
+  --color-gold-dark: #8B6914;
+  --color-cream: #F0EAD6;
+  --color-zinc-900: #111111;
+}
+
+/* ── CSS custom properties (used in inline styles & animations) ── */
+:root {
+  --bg: #0a0c16;
+  --gold: #C9A84C;
+  --gold-light: #E8C97A;
+  --gold-dark: #8B6914;
+  --cream: #F0EAD6;
+  --font-display: var(--font-cinzel-decorative), serif;
+  --font-ui: var(--font-cinzel), serif;
+  --font-body: var(--font-lato), sans-serif;
+}
+
+/* ── Reset & base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--bg);
+  color: var(--cream);
+  scroll-behavior: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  background-color: var(--bg);
+  color: var(--cream);
+  overflow-x: hidden;
+  color-scheme: dark;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 2px; }
+
+/* ── Shimmer animation ── */
+@keyframes shimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+.shimmer,
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    var(--gold-dark) 0%,
+    var(--gold) 30%,
+    var(--gold-light) 50%,
+    var(--gold) 70%,
+    var(--gold-dark) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+
+/* ── Gold divider ornament ── */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.divider::before,
+.divider::after {
+  content: '';
+  height: 1px;
+  width: 48px;
+  background: linear-gradient(to right, transparent, var(--gold));
+  opacity: 0.5;
+}
+.divider::after {
+  background: linear-gradient(to left, transparent, var(--gold));
+}
+
+/* ── Section utility ── */
+.section {
+  padding: 7rem 1.5rem;
+}
+
+/* ── Eyebrow label ── */
+.eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ── Section heading ── */
+.heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--cream);
+  line-height: 1.1;
+}
+
+
+/* ── Marquee ── */
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: marqueeScroll 35s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+/* ── Card border glow ── */
+.border-glow {
+  border: 1px solid rgba(201,168,76,0.1);
+  transition: border-color 0.3s ease;
+}
+.border-glow:hover {
+  border-color: rgba(201,168,76,0.3);
+}
+
+/* ── Hover utilities ── */
+.hover-gold:hover { background: rgba(201,168,76,0.05) !important; }
+.hover-dim:hover { opacity: 0.7; }
+.hover-scale img { transition: transform 0.6s ease; }
+.hover-scale:hover img { transform: scale(1.08); }
+.hover-border:hover { border-color: rgba(201,168,76,0.5) !important; }
+
+/* ── Focus visible (keyboard navigation) ── */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+.btn-gold:focus-visible,
+.btn-outline:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 5px;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .shimmer {
+    animation: none;
+    background: var(--gold);
+  }
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* ── Gold button ── */
+.btn-gold {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  background: var(--gold);
+  color: var(--bg);
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.25s ease;
+}
+.btn-gold:hover { background: var(--gold-light); }
+
+/* ── Outline button ── */
+.btn-outline {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  border: 1px solid rgba(201,168,76,0.5);
+  color: var(--gold);
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold-light); }
