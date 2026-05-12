@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import HeroCanvas from "./HeroCanvas";
 
@@ -14,32 +15,40 @@ export default function Hero({ content }: HeroProps) {
   const ctaPrimary  = content.cta_primary  || "Zarezerwuj wizytę";
   const ctaSecondary = content.cta_secondary || "Zobacz prace";
   const sectionRef = useRef<HTMLElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const metaRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      gsap.from(logoRef.current, {
+        opacity: 0,
+        y: 40,
+        duration: 1.2,
+        ease: "power3.out",
+        delay: 0.1,
+      });
       gsap.from(titleRef.current, {
         opacity: 0,
-        y: 70,
-        duration: 1.3,
+        y: 30,
+        duration: 1.0,
         ease: "power3.out",
-        delay: 0.2,
+        delay: 0.5,
       });
       gsap.from(metaRef.current, {
         opacity: 0,
         y: 30,
         duration: 1,
         ease: "power3.out",
-        delay: 0.8,
+        delay: 1.0,
       });
       gsap.from(ctaRef.current, {
         opacity: 0,
         y: 20,
         duration: 0.9,
         ease: "power3.out",
-        delay: 1.1,
+        delay: 1.3,
       });
     }, sectionRef);
 
@@ -90,11 +99,30 @@ export default function Hero({ content }: HeroProps) {
           padding: "0 2rem",
         }}
       >
+        {/* Logo */}
+        <div
+          ref={logoRef}
+          style={{ marginBottom: "1.5rem" }}
+        >
+          <Image
+            src="/zeus-emblem.png"
+            alt="Zeus Barber Shop emblem"
+            width={206}
+            height={152}
+            priority
+            style={{
+              width: "clamp(182px, 29vw, 338px)",
+              height: "auto",
+              display: "block",
+            }}
+          />
+        </div>
+
         <h1
           ref={titleRef}
           style={{
             fontFamily: "var(--font-ui)",
-            fontSize: "clamp(6rem, 24vw, 22rem)",
+            fontSize: "clamp(3.6rem, 14.4vw, 13.2rem)",
             fontWeight: 700,
             letterSpacing: "0.12em",
             lineHeight: 0.88,

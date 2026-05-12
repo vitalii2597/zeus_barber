@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 
 const NAV_LINKS = [
   { href: "#rezerwacja", label: "Rezerwacja" },
-  { href: "#galeria", label: "Galeria" },
   { href: "#academy", label: "Academy" },
+  { href: "#galeria", label: "Galeria" },
   { href: "#kontakt", label: "Kontakt" },
 ];
 
@@ -90,19 +91,19 @@ export default function Navbar() {
         <a
           href="#hero"
           onClick={(e) => handleNavClick(e, "#hero")}
-          style={{ textDecoration: "none", display: "flex", flexDirection: "column", lineHeight: 1 }}
+          style={{ textDecoration: "none", display: "flex", alignItems: "center", lineHeight: 1 }}
         >
-          <span
+          <Image
+            src="/zeus-emblem.png"
+            alt="Zeus Barber Shop"
+            width={206}
+            height={152}
             style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "1.3rem",
-              fontWeight: 900,
-              letterSpacing: "0.12em",
-              color: "var(--gold)",
+              height: "44px",
+              width: "auto",
+              display: "block",
             }}
-          >
-            ZEUS
-          </span>
+          />
         </a>
 
         {/* Desktop nav */}

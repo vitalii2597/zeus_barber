@@ -17,7 +17,7 @@
   --gold-light: #E8C97A;
   --gold-dark: #8B6914;
   --cream: #F0EAD6;
-  --font-display: var(--font-cinzel-decorative), serif;
+  --font-display: var(--font-cinzel), serif;
   --font-ui: var(--font-cinzel), serif;
   --font-body: var(--font-lato), sans-serif;
 }

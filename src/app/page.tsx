@@ -63,12 +63,12 @@ export default async function Home() {
       <main>
         <Hero content={content.hero ?? {}} />
         <CTAStrip />
+        <ZeusAcademy content={content.academy ?? {}} />
         <Services services={services} content={content.services ?? {}} />
         <Rezerwacja content={content.rezerwacja ?? {}} />
         <Suspense fallback={<GaleriaSkeleton />}>
           <GaleriaSection content={content.galeria ?? {}} />
         </Suspense>
-        <ZeusAcademy content={content.academy ?? {}} />
         <Kontakt content={content.contact ?? {}} />
       </main>
     </SmoothScroll>
